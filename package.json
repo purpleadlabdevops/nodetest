@@ -1,0 +1,23 @@
+{
+  "name": "user_login_registration",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "-": "0.0.1",
+    "body": "^5.1.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "flash": "^1.1.0",
+    "mysql": "^2.18.1",
+    "parser": "^0.1.4",
+    "req": "^0.1.4",
+    "save": "^2.4.0",
+    "session": "^0.1.0"
+  }
+}

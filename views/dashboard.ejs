@@ -1,0 +1,61 @@
+<html lang="en">
+<%- include('header'); -%>
+<%- include('container'); -%>
+  <div class="jumbotron">
+	<h1>Deal</h1>
+	<p>Welcome here</p>
+	<div class="panel-body" >
+					<form class="form-horizontal" role="form" method="post" action="/signup">
+						
+						
+						
+						<div id="signupalert" style="display:none" class="alert alert-danger">
+							<p>Error:</p>
+							<span></span>
+						</div>
+						<div class="form-group">
+							
+							<div class="col-md-9">
+								<input type="text" class="form-control" name="title" placeholder="Deal title">
+							</div>
+						</div>
+						<div class="form-group">
+							
+							<div class="col-md-9">
+								<input type="text" class="form-control" name="Company name" placeholder="Company name">
+							</div>
+						</div>
+						<div class="form-group">
+							
+							<div class="col-md-9">
+								<input type="text" class="form-control" name="first_name" placeholder="Client name">
+							</div>
+						</div>
+						
+						<div class="form-group">
+							
+							<div class="col-md-9">
+								<input type="phone" class="form-control" name="mobile" placeholder="Client phone">
+							</div>
+						</div>
+						<div class="form-group">
+							
+							<div class="col-md-9">
+								<input type="text" class="form-control" name="email" placeholder="Client email">
+							</div>
+						</div>		
+						<div class="form-group">
+							
+							<div class="col-md-9">
+								<input type="text" class="form-control" name="offer_cost" placeholder="Offer Cost">
+							</div>
+						</div>						
+						<div class="form-group">						            
+							<div class="col-md-offset-3 col-md-9">
+								<button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Send dial</button>
+							</div>
+						</div>
+					</form>
+				</div>
+  </div>
+<%- include('footer'); -%>

@@ -8,53 +8,14 @@ var session = require('express-session');
 var app = express();
 var mysql      = require('mysql');
 var bodyParser=require("body-parser");
-
-
-
-var fs = require('fs');
-var glob = require( 'glob' );
-var language_dict = {};
-glob.sync( './language/*.json' ).forEach( function( file ) {
-  let dash = file.split("/");
-  if(dash.length == 3) {
-      let dot = dash[2].split(".");
-    if(dot.length == 2) {
-      let lang = dot[0];
-      fs.readFile(file, function(err, results) {
-        language_dict[lang] = JSON.parse(results.toString());
-      });
-    }
-  }
-});
-  var q = path.parse(req.path, true);
-  var lang = 'en';
-  let dash = q.pathname.split("/");
-  if(dash.length >= 2) {
-    let code = dash[1];
-    if(code !== '' && language_dict.hasOwnProperty(code)) {
-      lang = code;
-    }
-  
-
-  fs.readFile('index.ejs', function(err, results) {
-    res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-    let results_string = results.toString()
-    for (var key of Object.keys(language_dict[lang])) {
-      let pattern = new RegExp("{{" + key + "}}", "g");
-      results_string = results_string.replace(pattern, language_dict[lang][key]);
-    }
-    res.write(results_string);
-    return res.end();
-  });
-
-
-
 var connection2 = mysql.createConnection({
               host     : 'localhost',
               user     : 'root',
               password : 'root'
               
-            });             
+            });
+
+             
 connection2.connect();
  
 global.db2 = connection2;
@@ -116,7 +77,7 @@ app.use(session({
               resave: false,
               saveUninitialized: true,
               cookie: { maxAge: 60000 }
-            }));
+            }))
  
 app.get('/', routes.index);
 app.get('/signup', user.signup);
@@ -125,7 +86,11 @@ app.get('/login', routes.index);
 app.post('/login', user.login);
 app.get('/home/signupdeal', user.signupdeal);
 app.post('/home/signupdeal', user.signupdeal);
-
+app.get('/home/signupdeal', user.deallist);
+app.get('/home/dealdelete', user.dealdelete);
+app.post('/dealdelete', user.dealdelete);
 app.get('/home/logout', user.logout);
-
+app.get('/restart', function (req, res, next) {
+  process.exit(1);
+});
 app.listen(9000)

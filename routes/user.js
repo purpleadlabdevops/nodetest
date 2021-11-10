@@ -59,22 +59,6 @@ exports.login = function(req, res){
 };
 
            
-/*exports.signupdeal = function(req, res, next){
-           
-   var user =  req.session.user,
-   userId = req.session.userId;
-   console.log('ddd='+userId);
-   if(userId == null){
-      res.redirect("/login");
-      return;
-   }
-
-   var sql="SELECT * FROM `users` WHERE `id`='"+userId+"'";
-
-   db.query(sql, function(err, results){
-      res.render('signupdeal.ejs', {data:results});    
-   });       
-};*/
 
 
 exports.logout=function(req,res){
@@ -109,19 +93,24 @@ exports.signupdeal = function(req, res){
      }
 
    } else {
-      res.render('signupdeal.ejs');
+     var sql='SELECT * FROM deals';
+
+ db.query(sql, function(err, result){
+     
+      res.render('signupdeal.ejs', {data: result});    
+   });  
    }
 };
 
-/*exports.deallist = function(req, res){
+exports.deallist = function(req, res){
           
   
- 
+ var data = '';
    var sql='SELECT * FROM deals';
 
- db.query(sql, function(err, results){
-      console.log(rows);
-      res.render('signupdeal.ejs', {res: results});    
+ db.query(sql, function(err, result){
+      
+      res.render('signupdeal.ejs', {data: result});    
    });     
 };
 
@@ -131,15 +120,15 @@ exports.dealdelete = function(req, res){
    if(req.method == "POST"){
       var post  = req.body;
       var dealid = post.dealid;
-   var sql="DELETE * FROM `deals` WHERE `id`='"+dealid+"'";
+   var sql="DELETE FROM `deals` WHERE `id`='"+dealid+"'";
 
-   db.query(sql, function(err, results){
+   db.query(sql, function(err, result){
       message = "Deal deleted.";
-      res.render('signupdeal.ejs',{message: message});    
+      res.redirect('/signupdeal');    
    });
    
           
 } else {
-      res.render('signupdeal.ejs');
+      res.redirect('/signupdeal');
    }
-};*/
+};
